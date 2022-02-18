@@ -67,12 +67,14 @@ for col in ["creationDate", "startDate", "endDate"]:
     # Remove timezone from columns
     df[col] = df[col].dt.tz_localize(tz=None)
 
-# value is numeric, NaN if fails
+# convert value to numeric or NaN if fails
 df["value"] = pd.to_numeric(df["value"], errors="coerce")
 
-# some records do not measure anything, just count occurences
-# filling with 1.0 (= one time) makes it easier to aggregate
-df["value"] = df["value"].fillna(1.0)
+# how to treat nun-numeric values
+# a ) filling with 1.0 (= one time) makes it easier to aggregate
+# df["value"] = df["value"].fillna(1.0)
+# b) just drop value=na rows
+df = df[df["value"].notna()]
 
 # shorter observation names: use vectorized replace function
 df["type"] = df["type"].str.replace("HKQuantityTypeIdentifier", "")
