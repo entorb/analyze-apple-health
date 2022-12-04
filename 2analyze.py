@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 # by Dr. Torben Menke https://entorb.net
 # https://github.com/entorb/analyze-apple-health
-
 """
+Analyze data.
+
 read out/data-raw-2.tsv
 export example data to out/data-type-examples/
 convert to pivot table using endDate as index
 export month summary for certain data types
 """
 
-import numpy as np
-import os
-import pandas as pd
-import time
+from pathlib import Path
 
-os.makedirs("out/data-type-examples", exist_ok=True)
+import numpy as np
+import pandas as pd
+
+Path("out/data-type-examples").mkdir(exist_ok=True)
 
 df = pd.read_csv(
     "out/data-raw-2.tsv",
@@ -36,15 +37,15 @@ print("export out/data-type-examples/")
 types = sorted(df["type"].unique().tolist())
 for t in types:
     df2 = df[df["type"] == t]
-    l = len(df2.index)
-    if l >= 4:
+    lines = len(df2.index)
+    if lines >= 4:  # noqa: PLR2004
         print(" - " + t)
-        df2 = df2.iloc[[0, int(l / 3), int(2 * l / 3), -1]]
+        df2 = df2.iloc[[0, int(lines / 3), int(2 * lines / 3), -1]]
         df2.to_csv(
             f"out/data-type-examples/{t}.tsv",
             sep="\t",
             line_terminator="\n",
-        )
+        )  # type: ignore
 
 
 df2 = df.groupby(["sourceName", "type"]).size().reset_index(name="count")
@@ -52,7 +53,7 @@ print(df2)
 df2.to_csv(
     "out/count_source_type.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
     index=False,
 )
 
@@ -61,7 +62,7 @@ print(df2)
 df2.to_csv(
     "out/count_type_source.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
     index=False,
 )
 
@@ -78,7 +79,7 @@ df_pivot = df.pivot_table(index="endDate", columns="type", values="value")
 df_pivot.to_csv(
     "out/pivot.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
 )
 
 
@@ -96,7 +97,7 @@ df_month = df_pivot.resample("M").agg(
         "HeadphoneAudioExposure": np.mean,
         # "HeartRate": np.mean, # needs filtering on activity and not
         # "RespiratoryRate": np.mean,
-    }
+    },  # type: ignore
 )
 
 # round all
@@ -108,6 +109,6 @@ for col in df_month.columns:
 df_month.to_csv(
     "out/month.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
 )
 df_month.to_excel("out/month.xlsx")
