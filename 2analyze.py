@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # by Dr. Torben Menke https://entorb.net
 # https://github.com/entorb/analyze-apple-health
-
 """
+Analyze data.
+
 read out/data-raw-2.tsv
 export example data to out/data-type-examples/
 convert to pivot table using endDate as index
 export month summary for certain data types
 """
+import os
 
 import numpy as np
-import os
 import pandas as pd
-import time
 
 os.makedirs("out/data-type-examples", exist_ok=True)
 
@@ -52,7 +52,7 @@ print(df2)
 df2.to_csv(
     "out/count_source_type.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
     index=False,
 )
 
@@ -61,7 +61,7 @@ print(df2)
 df2.to_csv(
     "out/count_type_source.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
     index=False,
 )
 
@@ -78,7 +78,7 @@ df_pivot = df.pivot_table(index="endDate", columns="type", values="value")
 df_pivot.to_csv(
     "out/pivot.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
 )
 
 
@@ -96,7 +96,7 @@ df_month = df_pivot.resample("M").agg(
         "HeadphoneAudioExposure": np.mean,
         # "HeartRate": np.mean, # needs filtering on activity and not
         # "RespiratoryRate": np.mean,
-    }
+    },
 )
 
 # round all
@@ -108,6 +108,6 @@ for col in df_month.columns:
 df_month.to_csv(
     "out/month.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
 )
 df_month.to_excel("out/month.xlsx")
