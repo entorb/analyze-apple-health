@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # by Dr. Torben Menke https://entorb.net
 # https://github.com/entorb/analyze-apple-health
-
 """
+Analyze data.
+
 read out/data-raw-2.tsv
 export example data to out/data-type-examples/
 convert to pivot table using endDate as index
 export month summary for certain data types
 """
+import os
 
 import numpy as np
-import os
 import pandas as pd
-import time
 
 os.makedirs("out/data-type-examples", exist_ok=True)
 
@@ -96,7 +96,7 @@ df_month = df_pivot.resample("M").agg(
         "HeadphoneAudioExposure": np.mean,
         # "HeartRate": np.mean, # needs filtering on activity and not
         # "RespiratoryRate": np.mean,
-    }
+    },
 )
 
 # round all
