@@ -52,7 +52,7 @@ print(df2)
 df2.to_csv(
     "out/count_source_type.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
     index=False,
 )
 
@@ -61,7 +61,7 @@ print(df2)
 df2.to_csv(
     "out/count_type_source.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
     index=False,
 )
 
@@ -78,7 +78,7 @@ df_pivot = df.pivot_table(index="endDate", columns="type", values="value")
 df_pivot.to_csv(
     "out/pivot.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
 )
 
 
@@ -108,6 +108,6 @@ for col in df_month.columns:
 df_month.to_csv(
     "out/month.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
 )
 df_month.to_excel("out/month.xlsx")
