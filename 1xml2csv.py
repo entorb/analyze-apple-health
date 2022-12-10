@@ -85,7 +85,7 @@ timelast = time.time()
 df.to_csv(
     "out/data-raw-2.tsv",
     sep="\t",
-    line_terminator="\n",
+    lineterminator="\n",
 )
 print("%ds" % (time.time() - timelast))
 
