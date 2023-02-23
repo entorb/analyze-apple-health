@@ -1,13 +1,15 @@
-# install:
+# install
 #  pip3 install pre-commit
-# run:
+# run
 #  pre-commit run -a
-# update deps:
+# or
+#  pre-commit run --files myFile1.py myFile2.py
+# update hooks to latest version
 #  pre-commit autoupdate
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
       # see https://github.com/pre-commit/pre-commit-hooks
       - id: check-added-large-files
