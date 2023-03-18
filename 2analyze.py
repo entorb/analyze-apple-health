@@ -36,10 +36,10 @@ print("export out/data-type-examples/")
 types = sorted(df["type"].unique().tolist())
 for t in types:
     df2 = df[df["type"] == t]
-    l = len(df2.index)
-    if l >= 4:
+    lines = len(df2.index)
+    if lines >= 4:
         print(" - " + t)
-        df2 = df2.iloc[[0, int(l / 3), int(2 * l / 3), -1]]
+        df2 = df2.iloc[[0, int(lines / 3), int(2 * lines / 3), -1]]
         df2.to_csv(
             f"out/data-type-examples/{t}.tsv",
             sep="\t",

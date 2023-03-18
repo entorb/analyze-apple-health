@@ -30,7 +30,8 @@ print("read xml data")
 timelast = time.time()
 # create element tree object
 tree = XMLparse("apple_health_export/export.xml")  # noqa: S405,S405
-# for every health record, extract the attributes into a dictionary (columns). Then create a list (rows).
+# For every health record, extract the attributes into a dictionary (columns).
+# Then create a list (rows).
 root = tree.getroot()
 record_list = [x.attrib for x in root.iter("Record")]
 print("%ds" % (time.time() - timelast))
