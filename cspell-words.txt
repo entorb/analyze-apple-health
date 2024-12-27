@@ -1,0 +1,15 @@
+# CSpell Custom Dictionary Words
+autoflake
+autoupdate
+DataFrame
+ELEMNT
+fillna
+iloc
+isort
+Menke
+noqa
+notna
+Pandas
+timelast
+Torben
+venv

@@ -9,12 +9,13 @@ export example data to out/data-type-examples/
 convert to pivot table using endDate as index
 export month summary for certain data types
 """
-import os
+
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-os.makedirs("out/data-type-examples", exist_ok=True)
+Path("out/data-type-examples").mkdir(exist_ok=True)
 
 df = pd.read_csv(
     "out/data-raw-2.tsv",
@@ -37,14 +38,14 @@ types = sorted(df["type"].unique().tolist())
 for t in types:
     df2 = df[df["type"] == t]
     lines = len(df2.index)
-    if lines >= 4:
+    if lines >= 4:  # noqa: PLR2004
         print(" - " + t)
         df2 = df2.iloc[[0, int(lines / 3), int(2 * lines / 3), -1]]
         df2.to_csv(
             f"out/data-type-examples/{t}.tsv",
             sep="\t",
             line_terminator="\n",
-        )
+        )  # type: ignore
 
 
 df2 = df.groupby(["sourceName", "type"]).size().reset_index(name="count")
@@ -96,7 +97,7 @@ df_month = df_pivot.resample("M").agg(
         "HeadphoneAudioExposure": np.mean,
         # "HeartRate": np.mean, # needs filtering on activity and not
         # "RespiratoryRate": np.mean,
-    },
+    },  # type: ignore
 )
 
 # round all
