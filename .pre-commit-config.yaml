@@ -62,7 +62,7 @@ repos:
 
   # ruff
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: "v0.8.4"
+    rev: "v0.11.2"
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
@@ -103,14 +103,14 @@ repos:
 
   # markdown
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.43.0
+    rev: v0.44.0
     hooks:
       - id: markdownlint
         args: ["--disable", "MD013"]
 
   # code spell check via cspell
   - repo: https://github.com/streetsidesoftware/cspell-cli
-    rev: v8.17.0
+    rev: v8.17.3
     hooks:
       - id: cspell
 
