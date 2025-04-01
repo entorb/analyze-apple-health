@@ -82,9 +82,8 @@ df_pivot.to_csv(
     lineterminator="\n",
 )
 
-
 # calc month average/mean values (without any filtering applied...)
-# TODO: # uncomment data types you do not have in your health data set
+# uncomment data types you do not have in your health data set
 df_month = df_pivot.resample("M").agg(
     {
         "BodyMass": np.mean,
