@@ -22,9 +22,6 @@ from pathlib import Path
 import pandas as pd
 from defusedxml.ElementTree import parse as XMLparse  # fixes S405  # noqa: N812
 
-# from xml.etree.ElementTree import parse as XMLparse
-
-
 Path("out").mkdir(exist_ok=True)
 
 print("read xml data")
@@ -43,15 +40,6 @@ timelast = time.time()
 # create DataFrame from a list (rows) of dictionaries (columns)
 df = pd.DataFrame(record_list)
 print(f"{int(time.time() - timelast)}s")
-
-# print("export out/data-raw-1.tsv")
-# timelast = time.time()
-# df.to_csv(
-#     "out/data-raw-1.tsv",
-#     sep="\t",
-#     line_terminator="\n",
-# )
-# print("%ds" % (time.time() - timelast))
 
 
 print("column modifications")
