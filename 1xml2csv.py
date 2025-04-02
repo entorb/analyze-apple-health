@@ -9,24 +9,20 @@ export in csv and Excel format
 out/data-raw.*
 Note: Excel has a limit of 1,048,576 rows...
 
-TODO: checkout export_cda.xml as well
+based on https://towardsdatascience.com/analyse-your-health-with-python-and-apple-health-11c12894aae2
+TODO: checkout export_cda.xml too
 """
 
-# based on https://towardsdatascience.com/analyse-your-health-with-python-and-apple-health-11c12894aae2
-# requirements:
-# pip3 install pandas
-# import numpy as np
 import time
 from pathlib import Path
 
 import pandas as pd
-from defusedxml.ElementTree import parse as XMLparse  # fixes S405  # noqa: N812
+from defusedxml.ElementTree import parse as XMLparse  # noqa: N812
 
 Path("out").mkdir(exist_ok=True)
 
 print("read xml data")
 timelast = time.time()
-# create element tree object
 tree = XMLparse("apple_health_export/export.xml")
 # For every health record, extract the attributes into a dictionary (columns).
 # Then create a list (rows).
