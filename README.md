@@ -7,6 +7,6 @@
 
 ## Features
 
-* converts Apple Health export XML data to CSV and Excel format (based on code from [here](https://towardsdatascience.com/analyse-your-health-with-python-and-apple-health-11c12894aae2))
+* converts Apple Health export XML data to CSV and Excel (based on code from [here](https://towardsdatascience.com/analyse-your-health-with-python-and-apple-health-11c12894aae2))
 * provides a starting point for your own data analytics
 * some simple statistics on the data sources
