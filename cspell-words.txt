@@ -2,6 +2,7 @@
 autoflake
 autoupdate
 DataFrame
+defusedxml
 ELEMNT
 fillna
 iloc
@@ -9,7 +10,9 @@ isort
 Menke
 noqa
 notna
+numpy
 Pandas
+pytest
 SonarCloud
 SonarQube
 timelast
