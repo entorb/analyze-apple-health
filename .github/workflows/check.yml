@@ -1,4 +1,4 @@
-name: Check Python Project
+name: Check and Test Python Project
 
 on:
   workflow_dispatch:
@@ -25,11 +25,30 @@ jobs:
           persist-credentials: false
           fetch-depth: 1 # 0 if you want to push to repo
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
       - name: Python set up
         uses: actions/setup-python@v6
         with:
           python-version-file: ".python-version"
-          # cache: "pip"
+
+      - name: Run Ruff
+        run: |
+          uv run ruff format
+          uv run ruff check --fix
+
+      # - name: Run pytest unittests
+      #   run: |
+      #     uv run --frozen pytest tests/ --cov --cov-report=xml:coverage.xml
 
       - name: Run pre-commit hooks
         uses: pre-commit/action@v3.0.1
+
+      # # for SonarQube coverage report
+      # - name: SonarQube Scan
+      #   uses: SonarSource/sonarqube-scan-action@v7
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
