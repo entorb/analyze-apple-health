@@ -1,20 +1,9 @@
 # CSpell Custom Dictionary Words
-autoflake
-autoupdate
-DataFrame
-defusedxml
 ELEMNT
-fillna
-iloc
-isort
+entorb
 Menke
-noqa
-notna
-numpy
-Pandas
-pytest
-SonarCloud
+sonarcloud
 SonarQube
+testpaths
 timelast
 Torben
-venv
