@@ -1,0 +1,9 @@
+.DS_Store
+/.pytest_cache/
+/.ruff_cache/
+/.rumdl_cache/
+/.venv/
+apple_health_export/
+cspell-words-missing.txt
+out/
+plot/
