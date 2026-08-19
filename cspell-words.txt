@@ -3,6 +3,7 @@ entorb
 Menke
 prek
 rumdl
+shfmt
 sonarcloud
 SonarQube
 testpaths
